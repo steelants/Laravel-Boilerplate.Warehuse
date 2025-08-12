@@ -1,1 +1,1 @@
-# Laravel-Boilerplate.Warehuse
+# Laravel-Boilerplate.Warehouse
