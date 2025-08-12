@@ -1,0 +1,34 @@
+{
+    "name": "steelants/laravel-boilerplate.warehuse",
+    "description": "Simple Warehouse Management System",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^11.0|^12.0",
+        "livewire/livewire": "^3.0",
+        "steelants/boilerplate": "^2.3.5"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Steelants\\LaravelBoilerplate\\Warehuse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SteelAnts",
+            "email": "info@steelants.cz"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Barryvdh\\Debugbar\\ServiceProvider"
+            ],
+            "aliases": {
+                "Debugbar": "Barryvdh\\Debugbar\\Facade"
+            }
+        }
+    }
+}
