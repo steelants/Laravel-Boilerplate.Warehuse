@@ -1,4 +1,4 @@
-<x-admin.layout>
+<x-layout-app>
     <div class="container-xl">
         <div class="page-header">
             <h1>{{ $item->name }}</h1>
@@ -33,4 +33,4 @@
             </table>
         </div>
     </div>
-</x-admin.layout>
+</x-layout-app>

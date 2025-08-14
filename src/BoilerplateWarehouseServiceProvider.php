@@ -21,6 +21,9 @@ class BoilerplateWarehouseServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/admin.php');
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'boilerplate-warehouse');
+        $this->publishes([
+            __DIR__ . '/../config/boilerplate-warehouse.php' => config_path('boilerplate-warehouse.php'),
+        ], 'boilerplate-warehouse-config');
 
         if ($this->app->runningInConsole()) {
             $this->bootConsole();
@@ -41,7 +44,10 @@ class BoilerplateWarehouseServiceProvider extends ServiceProvider
         ], 'boilerplate-warehouse-views');
     }
 
-    public function register(): void {}
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/boilerplate-warehouse.php', 'boilerplate-warehouse');
+    }
 
     protected function registerPolicies(): void
     {

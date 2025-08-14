@@ -2,15 +2,28 @@
 
 namespace SteelAnts\LaravelBoilerplate\Warehouse\Livewire\Admin\Stock\Inventory;
 
-use Livewire\Component;
+use Illuminate\Database\Eloquent\Builder;
 use SteelAnts\LaravelBoilerplate\Warehouse\Models\Inventory;
+use SteelAnts\DataTable\Livewire\DataTableComponent;
+use SteelAnts\DataTable\Traits\UseDatabase;
 
-class DataTable extends Component
+class DataTable extends DataTableComponent
 {
-    public function render()
+    use UseDatabase;
+
+    public bool $paginated = true;
+    public int $itemsPerPage = 25;
+
+    public function query(): Builder
     {
-        $inventories = Inventory::query()->orderBy('name')->get();
-        return view('boilerplate-warehouse::livewire.admin.stock.inventory.data-table', compact('inventories'));
+        return Inventory::query()->orderBy('name');
+    }
+
+    public function headers(): array
+    {
+        return [
+            'name' => __('Sklad'),
+        ];
     }
 }
 

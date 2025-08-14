@@ -1,4 +1,4 @@
-<x-admin.layout>
+<x-layout-app>
     <div class="container-xl">
         <div class="page-header">
             <h1>{{ __('Prodejci') }}</h1>
@@ -8,4 +8,4 @@
         </div>
         @livewire('admin.stock.seller.data-table', [], key('data-table'))
     </div>
-</x-admin.layout>
+</x-layout-app>
