@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use SteelAnts\LaravelBoilerplate\Warehouse\Models\Inventory;
+use SteelAnts\LaravelBoilerplate\Warehouse\Models\Item;
+use SteelAnts\LaravelBoilerplate\Warehouse\Models\Supplier;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('stockups', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Supplier::class)->nullable()->constrained();
+            $table->foreignIdFor(Item::class)->constrained();
+            $table->foreignIdFor(Inventory::class)->constrained();
+            $table->decimal('amount', 12, 2);
+            $table->string('note')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('stockups');
+    }
+};
+

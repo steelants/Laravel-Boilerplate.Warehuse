@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string('name');
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('state')->nullable();
+            $table->string('ico')->nullable();
+            $table->string('dic')->nullable();
+            $table->boolean('is_vat_payer')->default(false);
             $table->timestamps();
         });
     }

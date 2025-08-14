@@ -2,13 +2,13 @@
 
 namespace SteelAnts\LaravelBoilerplate\Warehouse\Models;
 
-use App\Observers\ItemObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SteelAnts\LaravelBoilerplate\Warehouse\Observers\ItemObserver;
 
 class Item extends Model
 {
-    use HasFactory, Auditable, HasTenant;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -29,9 +29,9 @@ class Item extends Model
         'price_no_vat' => 'decimal:2',
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
-        Item::observe(ItemObserver::class);
+        static::observe(ItemObserver::class);
     }
 
     public function category()
@@ -46,11 +46,12 @@ class Item extends Model
 
     public function inventoryItems()
     {
-        return $this->hasMany(InventoryItem::class, "item_id", "id");
+        return $this->hasMany(InventoryItem::class, 'item_id', 'id');
     }
 
     public function inventoryLogs()
     {
-        return $this->hasMany(InventoryLog::class, "item_id", "id");
+        return $this->hasMany(InventoryLog::class, 'item_id', 'id');
     }
 }
+

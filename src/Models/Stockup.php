@@ -5,32 +5,31 @@ namespace SteelAnts\LaravelBoilerplate\Warehouse\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryItem extends Model
+class Stockup extends Model
 {
     use HasFactory;
 
-    protected $table = 'inventory_item';
-
     protected $fillable = [
+        'supplier_id',
         'item_id',
         'inventory_id',
         'amount',
-        'created_at',
+        'note',
     ];
 
-    protected $casts = [
-        'amount' => 'decimal:2',
-        'created_at' => 'datetime:Y-m-d\\TH:i:s',
-    ];
-
-    public function inventory()
+    public function supplier()
     {
-        return $this->belongsTo(Inventory::class);
+        return $this->belongsTo(Supplier::class);
     }
 
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo(Inventory::class);
     }
 }
 

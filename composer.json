@@ -1,5 +1,5 @@
 {
-    "name": "steelants/laravel-boilerplate.warehuse",
+    "name": "steelants/laravel-boilerplate-warehouse",
     "description": "Simple Warehouse Management System",
     "type": "library",
     "require": {
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Steelants\\LaravelBoilerplate\\Warehuse\\": "src/"
+            "SteelAnts\\LaravelBoilerplate\\Warehouse\\": "src/"
         }
     },
     "authors": [
@@ -24,6 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
+                "SteelAnts\\LaravelBoilerplate\\Warehouse\\BoilerplateWarehouseServiceProvider",
                 "Barryvdh\\Debugbar\\ServiceProvider"
             ],
             "aliases": {

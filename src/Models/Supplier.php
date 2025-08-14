@@ -2,13 +2,13 @@
 
 namespace SteelAnts\LaravelBoilerplate\Warehouse\Models;
 
-use App\Observers\SupplierObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use SteelAnts\LaravelBoilerplate\Warehouse\Observers\SupplierObserver;
 
 class Supplier extends Model
 {
-    use HasFactory, Auditable, HasTenant, HasContact;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -21,18 +21,19 @@ class Supplier extends Model
         'is_vat_payer',
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
-        Supplier::observe(SupplierObserver::class);
+        static::observe(SupplierObserver::class);
     }
 
     public function inventoryLogs()
     {
-        return $this->belongsTo(InventoryLog::class);
+        return $this->hasMany(InventoryLog::class, 'supplier_id', 'id');
     }
 
     public function stockups()
     {
-        return $this->belongsTo(Stockup::class);
+        return $this->hasMany(Stockup::class, 'supplier_id', 'id');
     }
 }
+
